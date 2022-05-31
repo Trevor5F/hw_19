@@ -1,5 +1,3 @@
-
-
 from hw_19.dao.director import DirectorDAO
 from hw_19.dao.genre import GenreDAO
 from hw_19.dao.movie import MovieDAO

@@ -4,9 +4,8 @@ import datetime
 import jwt
 
 from .user import UserService
-from..helpers.constants import JWT_SECRET, JWT_ALGORITHM
+from ..helpers.constants import JWT_SECRET, JWT_ALGORITHM
 from flask_restx import abort
-
 
 
 class AuthService:
@@ -15,7 +14,6 @@ class AuthService:
 
     def generate_tokens(self, username, password, is_refresh=False):
         user = self.user_service.get_user_by_username(username)
-
 
         if user is None:
             raise abort(404)
@@ -43,7 +41,6 @@ class AuthService:
             'access_token': access_token,
             'refresh_token': refresh_token
         }
-
 
     def approve_refresh_token(self, refresh_token):
         data = jwt.decode(jwt=refresh_token, key=JWT_SECRET, algorithms=[JWT_ALGORITHM])

@@ -10,6 +10,7 @@ movie_ns = Namespace('movies')
 
 @movie_ns.route('/')
 class MoviesView(Resource):
+    @auth_required
     def get(self):
         director = request.args.get("director_id")
         genre = request.args.get("genre_id")
@@ -27,7 +28,7 @@ class MoviesView(Resource):
     def post(self):
         req_json = request.json
         movie_service.create(req_json)
-        return "", 201 #{"location": f"/movies/{movie.id}"}
+        return "", 201  # {"location": f"/movies/{movie.id}"}
 
 
 @movie_ns.route('/<int:bid>')

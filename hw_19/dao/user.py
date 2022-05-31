@@ -14,7 +14,6 @@ class UserDAO:
         self.session.commit()
         return user_ent
 
-
     def update(self, user_data):
         uid = user_data.get('id')
 
@@ -23,19 +22,14 @@ class UserDAO:
         user.username = user_data.get('username')
         user.password = user_data.get('password')
 
-
     def get_all(self):
         return self.session.query(User).all()
 
-
     def get_one(self, uid):
         return self.session.query(User).get(uid)
-
 
     def delete(self, uid):
         user = self.get_one(uid)
 
         self.session.delete(user)
         self.session.commit()
-
-

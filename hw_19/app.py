@@ -29,7 +29,6 @@ def register_extensions(app):
     api.add_namespace(user_ns)
 
 
-
 app = create_app(Config())
 app.debug = True
 

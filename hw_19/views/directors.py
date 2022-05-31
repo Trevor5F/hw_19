@@ -1,7 +1,6 @@
 from flask import request
 from flask_restx import Resource, Namespace
 
-
 from hw_19.dao.model.director import DirectorSchema
 from hw_19.helpers.decorators import auth_required
 from hw_19.implemented import director_service
@@ -11,6 +10,7 @@ director_ns = Namespace('directors')
 
 @director_ns.route('/')
 class DirectorsView(Resource):
+    @auth_required
     def get(self):
         rs = director_service.get_all()
         res = DirectorSchema(many=True).dump(rs)
@@ -22,7 +22,6 @@ class DirectorsView(Resource):
         director_service.create(data)
 
         return '', 201
-
 
 
 @director_ns.route('/<int:did>')
